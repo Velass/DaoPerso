@@ -19,7 +19,8 @@ public class Main {
 
 	       
 	        IDAO<User> userDAO = UserDAO.getInstance();
-	        userDAO.create(user1);
+	        //userDAO.create(user1);
+	        userDAO.readAll();
 
 	        
 }

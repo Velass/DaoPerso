@@ -3,6 +3,7 @@ package petFoodShop.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import petFoodShop.model.IDAO;
@@ -53,9 +54,28 @@ public class UserDAO implements IDAO<User> {
 	
 	
 	public List<User> readAll() {
-		// TODO Auto-generated method stub
+		  try {
+			ResultSet rs = JdbcSingleton.getInstance().getConnection().createStatement().executeQuery("SELECT * FROM user");
+//			for (ResultSet element : rs.next()) {
+//				
+//			}
+			
+			while (rs.next()) {
+                String login = rs.getString("login");
+                String pwd = rs.getString("pwd");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                int id = rs.getInt("id");
+                System.out.println("login : " + login + ", pwd : " + pwd + ", firstName : " + firstName+ ", firstName : " + lastName+ ", id : " + id);
+               
+            }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
+
 
 	public User read(Integer id) {
 		// TODO Auto-generated method stub
